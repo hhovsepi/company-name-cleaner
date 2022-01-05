@@ -1,8 +1,8 @@
 function cleanCompanyName(rawName) {
-    const splitThese = /ltd|corp|LLC| llc| LLc|.com| Pvt| Llc| PVT| lmtd| LIMITED| LTD| ltd| Ltd| Inc| Incorporated | incorporated| INC| Inc.|Orporated| Corporated| Corporation|'  Ltd'| LTD|INC| ltd| LTd| LTD|  ltd| Ltd/;
-    const replaceThese = /.LLC| llc|[?]|[.]|®|[*]|[$]|#|&|{|}|-|'|"|%|:|[+]|[,]|[(]|[)]|~|[<]|[>]|[@]|[™]|LLc|.com| Pvt| Llc| PVT| lmtd| LIMITED| LTD| ltd| Ltd| Inc| Incorporated | incorporated| INC| Inc.|Orporated| Corporated| Corporation|'  Ltd'| LTD|INC| ltd| LTd| LTD|  ltd|www |www.| Ltd/;
+    const splitThese = /[,]( g\.?m\.?b\.?h| l\.?l\.?c| l\.?t\.?d| p\.?v\.?t| i\.?n\.?c(orporated)?| limited| corp|)\.?/;
+    const replaceThese = /.LLC| llc|[?]|®|[*]|[$]|#|&|{|}|-|'|"|%|:|[+]|[,]|[(]|[)]|~|[<]|[>]|[@]|[™]| LLc|.com| Pvt| Llc| PVT| lmtd| LIMITED| LTD| ltd| Ltd| Inc| Incorporated | incorporated| INC| Inc.|Orporated| Corporated| Corporation|'  Ltd'| LTD|INC| ltd| LTd| LTD|  ltd|www |www.| Ltd/;
     let splitThese2 = new RegExp(splitThese, "gi");
-    let replaceThese2 = new RegExp(replaceThese, 'gi', '');
+    let replaceThese2 = new RegExp(replaceThese, 'gi', ''); 
 
     let SplitTest1 = rawName
     .split(splitThese2)[0]
@@ -73,17 +73,20 @@ function cleanCompanyName(rawName) {
 
     let cleanedString = SplitTest1[0] + " " + SplitTest1[1] + " " + SplitTest1[2] + " " + SplitTest1[3] + " " + SplitTest1[4];
     let finalProduct = cleanedString.trim();
-
     return finalProduct;
 }
 
 testCompanies = [
-    "josh's hard working paint shop, llc, ltd",
-    "Honest Haig's super car dealership pvt gmbh, llc .com",
+    "Medtronic, LLC",
+    "HAIG'S HOUSE",
     "some other already clean name",
-    ".com .ai .llc LLC, iNc whatever"
+    "SWANKY.AI",
+    "ABC INTERNATIONAL",
+    "Me.you",
+    "AMBIVELENT international"
 ]
+
 testCompanies.forEach(testCo => {
     clean = cleanCompanyName(testCo);
-    console.log(`[${testCo}]: [${clean}]`)
+     console.log(`[${testCo}]: [${clean}]`)
 });
